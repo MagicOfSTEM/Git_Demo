@@ -1,24 +1,7 @@
 # Simple Calculator for Git
 
 print('Welcome to this simple calculator')
-
-
-number1 = input("Please enter your 1st number: ")
-number2 = input("Please enter your 2nd number: ")
-operator = input("Please enter the operator/math function: +, -, x, /:  " )
-
-# Add error handling (Issue1)
-try:
-    f_number1 = float(number1)
-except:
-    print("Input type error! Please enter numbers only")
-    number1 = input("Please enter your 1st number: ")
-    
-try:
-    f_number2 = float(number2)
-except:
-    print("Input type error! Please enter numbers only")
-    number2 = input("Please enter your 2nd number: ") 
+print('Type \"Q\" to quit calculator')
 
 # Simple calculator function
 def calc(num1, num2, op):
@@ -32,6 +15,20 @@ def calc(num1, num2, op):
             answer = num1 / num2
         else:
             print("Inputs not recognised, please try again")
-        return print(answer)
+        return print(f'{num1} {op} {num2} = {answer:.4f}') # Rounded result to 2dp
 
-calc(f_number1, f_number2, operator)
+# Added continuous run with exit option
+re_run = " "
+while re_run != "q":
+    try: # Add error handling (Issue1)
+        number1 = float(input("Please enter your 1st number: "))
+        number2 = float(input("Please enter your 2nd number: "))
+        operator = " "
+        while operator not in ("+", "-", "x", "/"):
+            operator = input("Please enter the operator/math function: +, -, x, /:  " )
+        calc(number1, number2, operator)
+
+    except:
+        print("Possible typo, please re-enter the options")
+    
+    re_run = input("Press any key to continue, or \'Q\' to exit: ").lower()
