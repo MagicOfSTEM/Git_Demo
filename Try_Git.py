@@ -6,6 +6,7 @@ number1 = float(input("Please enter your 1st number: "))
 number2 = float(input("Please enter your 2nd number: "))
 operator = input("Please enter the operator/math function: +, -, x, /:  " )
 
+# Simple calculator function
 def calc(num1, num2, op):
         if op == '+':
             answer = num1 + num2
